@@ -1,0 +1,17 @@
+@import 'colors';
+
+.btn-full-width {
+  width: 100%;
+}
+
+.btn-primary {
+  background-color: $indigo;
+}
+
+.btn-success {
+  background-color: $green;
+}
+
+.btn-danger {
+  background-color: $red-error;
+}

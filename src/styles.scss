@@ -1,8 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/purple-green.css";
-@import '../node_modules/bootstrap-scss/bootstrap-grid';
+@import '../node_modules/bootstrap-scss/bootstrap';
 
 @import 'styles/colors';
 @import 'styles/theme';
 @import 'styles/fonts';
 @import 'styles/global';
+@import 'styles/buttons';
+@import 'styles/inputs';
