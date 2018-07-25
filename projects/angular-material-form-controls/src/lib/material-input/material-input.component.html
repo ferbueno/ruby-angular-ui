@@ -1,0 +1,14 @@
+  <mat-form-field class="full-width">
+    <input matInput
+           [type]="type"
+           [placeholder]="placeholder"
+           [formControl]="formControl"
+           [errorStateMatcher]="errorStateMatcher">
+  </mat-form-field>
+  <ng-container *ngFor="let error of errors">
+    <mat-error *ngIf="formControl.errors &&
+        formControl.errors[error.errorName] &&
+        (formControl.touched ||
+        formControl.dirty)">{{error.errorMessage}}
+    </mat-error>
+  </ng-container>
