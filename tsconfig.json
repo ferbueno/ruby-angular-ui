@@ -15,6 +15,14 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      "angular-material-form-controls": [
+        "dist/angular-material-form-controls"
+      ],
+      "angular-material-form-controls/*": [
+        "dist/angular-material-form-controls/*"
+      ]
+    }
   }
 }
