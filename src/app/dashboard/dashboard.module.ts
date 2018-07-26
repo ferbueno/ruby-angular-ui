@@ -15,8 +15,13 @@ import { MaterialModule } from 'src/app/material/material.module';
         component: DashboardComponent,
         children: [
           {
-            path: '',
+            path: 'people',
             loadChildren: 'src/app/people/people.module#PeopleModule'
+          },
+          {
+            path: '',
+            redirectTo: 'people',
+            pathMatch: 'full'
           }
         ]
       }

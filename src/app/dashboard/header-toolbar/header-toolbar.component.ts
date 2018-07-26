@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header-toolbar',
@@ -7,8 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./header-toolbar.component.scss']
 })
 export class HeaderToolbarComponent implements OnInit {
+  title: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
   }
@@ -16,5 +17,4 @@ export class HeaderToolbarComponent implements OnInit {
   logout() {
     this.router.navigate(['auth']);
   }
-
 }

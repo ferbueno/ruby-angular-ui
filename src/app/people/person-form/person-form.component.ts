@@ -3,42 +3,42 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { InputError } from 'projects/angular-material-form-controls/src/lib/models/input-error.model';
 
 @Component({
-  selector: 'app-login-form',
-  templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.scss']
+  selector: 'app-person-form',
+  templateUrl: './person-form.component.html',
+  styleUrls: ['./person-form.component.scss']
 })
-export class LoginFormComponent implements OnInit {
+export class PersonFormComponent implements OnInit {
   form: FormGroup;
   errors: { [key: string]: Array<InputError> };
-  @Output() loginEmitter: EventEmitter<boolean> = new EventEmitter();
+  @Output() saveEmitter: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group(
       {
-        username: ['', Validators.required],
-        password: ['', Validators.required]
+        firstname: ['', Validators.required],
+        lastname: ['', Validators.required]
       }
     );
   }
 
   ngOnInit() {
     this.errors = {
-      username: [
+      firstname: [
         {
           errorName: 'required',
-          errorMessage: 'The username is required'
+          errorMessage: 'The first name is required'
         }
       ],
-      password: [
+      lastname: [
         {
           errorName: 'required',
-          errorMessage: 'The password is required'
+          errorMessage: 'The last name is required'
         }
       ]
     };
   }
 
   onSubmit(): void {
-    this.loginEmitter.emit();
+    this.saveEmitter.emit();
   }
 }

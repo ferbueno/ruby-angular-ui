@@ -40,6 +40,22 @@ export class PeopleTableComponent implements OnInit {
         first_name: 'Test6',
         last_name: 'Test6'
       },
+      {
+        first_name: 'Test7',
+        last_name: 'Test7'
+      },
+      {
+        first_name: 'Test7',
+        last_name: 'Test7'
+      },
+      {
+        first_name: 'Test8',
+        last_name: 'Test8'
+      },
+      {
+        first_name: 'Test9',
+        last_name: 'Test9'
+      },
     ];
     this.dataSource = new MatTableDataSource<any>(this.data);
     this.dataSource.sort = this.sort;

@@ -1,0 +1,32 @@
+<div class="container">
+    <form [formGroup]="form"
+          (ngSubmit)="onSubmit()"
+          autocomplete="on">
+      <div class="row">
+        <div class="col-12">
+          <blungo-material-input placeHolder="Firstname"
+                                 autocomplete="firstname"
+                                 [control]="form.controls['firstname']"
+                                 [errors]="errors['firstname']">
+          </blungo-material-input>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <blungo-material-input placeHolder="Lastname"
+                                 autocomplete="lastname"
+                                 type="password"
+                                 [control]="form.controls['lastname']"
+                                 [errors]="errors['lastname']">
+          </blungo-material-input>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button class="btn-full-width"
+                  mat-raised-button
+                  type="submit">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>

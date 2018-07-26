@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
-    <div class="col-12 text-center">
-      <h1>Contacts</h1>
-    </div>
-  </div>
-  <div class="row">
     <div class="col-12">
       <app-people-table></app-people-table>
     </div>
+  </div>
+  <div id="add-button-container">
+    <button [routerLink]="['add']" mat-fab color="accent">
+      <mat-icon>add</mat-icon>
+    </button>
   </div>
 </div>
