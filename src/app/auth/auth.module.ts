@@ -6,13 +6,14 @@ import { MaterialModule } from 'src/app/material/material.module';
 
 import { LoginContainerComponent } from './login-container/login-container.component';
 import { LoginFormComponent } from './login-form/login-form.component';
-import { MaterialInputComponent } from './material-input/material-input.component';
+import { AngularMaterialFormControlsModule } from 'angular-material-form-controls';
 
 @NgModule({
   imports: [
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
+    AngularMaterialFormControlsModule,
     RouterModule.forChild([
       {
         path: '',
@@ -20,6 +21,6 @@ import { MaterialInputComponent } from './material-input/material-input.componen
       }
     ])
   ],
-  declarations: [LoginContainerComponent, LoginFormComponent, MaterialInputComponent]
+  declarations: [LoginContainerComponent, LoginFormComponent]
 })
 export class AuthModule { }

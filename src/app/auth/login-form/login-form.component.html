@@ -3,14 +3,19 @@
   <form [formGroup]="form">
     <div class="row">
       <div class="col-12">
-        <app-material-input [control]="form.controls['username']"
-                            [placeHolder]="'Usuario'"
-                            [errors]="errors['username']">
-        </app-material-input>
+        <blungo-material-input placeHolder="Usuario"
+                               [control]="form.controls['username']"
+                               [errors]="errors['username']">
+        </blungo-material-input>
       </div>
     </div>
     <div class="row">
       <div class="col-12">
+        <blungo-material-input placeHolder="Constraseña"
+                               type="password"
+                               [control]="form.controls['password']"
+                               [errors]="errors['password']">
+        </blungo-material-input>
       </div>
     </div>
     <div class="row">
