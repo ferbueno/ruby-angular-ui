@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { InputError } from 'projects/angular-material-form-controls/src/lib/models/input-error.model';
 
@@ -10,6 +10,7 @@ import { InputError } from 'projects/angular-material-form-controls/src/lib/mode
 export class LoginFormComponent implements OnInit {
   form: FormGroup;
   errors: { [key: string]: Array<InputError> };
+  @Output() loginEmitter: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group(
@@ -35,5 +36,9 @@ export class LoginFormComponent implements OnInit {
         }
       ]
     };
+  }
+
+  onSubmit(): void {
+    this.loginEmitter.emit();
   }
 }

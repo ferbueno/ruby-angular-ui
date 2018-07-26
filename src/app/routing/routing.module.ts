@@ -9,6 +9,10 @@ import { RouterModule } from '@angular/router';
         loadChildren: 'src/app/auth/auth.module#AuthModule'
       },
       {
+        path: 'dashboard',
+        loadChildren: 'src/app/dashboard/dashboard.module#DashboardModule'
+      },
+      {
         path: '',
         redirectTo: 'auth',
         pathMatch: 'full'

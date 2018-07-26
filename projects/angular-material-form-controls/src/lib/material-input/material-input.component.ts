@@ -13,6 +13,7 @@ import { InputError } from '../models/input-error.model';
 })
 export class MaterialInputComponent implements OnInit, OnDestroy {
   @Input() placeHolder: string;
+  @Input() autocomplete: string;
   @Input() control: FormControl;
   @Input() type = 'text';
   @Input() errors: Array<InputError> = [];
