@@ -3,7 +3,12 @@ export function reducer(state, action) {
     case 'USER_LOGIN':
       return {
         ...state,
-        user: action.payload
+        userData: action.payload
+      };
+    case 'AUTH_LOADING':
+      return {
+        ...state,
+        loading: action.payload
       };
     default:
       return state;

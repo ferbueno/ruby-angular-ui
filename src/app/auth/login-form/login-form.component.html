@@ -27,7 +27,12 @@
         <button color="primary"
                 class="btn-full-width"
                 mat-raised-button
-                type="submit">Login</button>
+                type="submit">Login
+          <mat-spinner *ngIf="loading"
+                       class="spinner"
+                       color="accent"
+                       [diameter]="20"></mat-spinner>
+        </button>
       </div>
     </div>
     <div class="row">
@@ -35,7 +40,8 @@
         <button [routerLink]="['../', 'register']"
                 class="btn-full-width"
                 mat-raised-button
-                type="submit">Create account</button>
+                type="submit">Create account
+        </button>
       </div>
     </div>
   </form>

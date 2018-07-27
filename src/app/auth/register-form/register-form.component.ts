@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { InputError } from 'projects/angular-material-form-controls/src/lib/models/input-error.model';
 import { NewAccount } from 'src/app/models/auth/new-account.model';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-register-form',
@@ -11,9 +12,10 @@ import { NewAccount } from 'src/app/models/auth/new-account.model';
 export class RegisterFormComponent implements OnInit {
   form: FormGroup;
   errors: { [key: string]: Array<InputError> };
+  loading: boolean;
   @Output() registerEmitter: EventEmitter<NewAccount> = new EventEmitter();
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private store: Store<any>) {
     this.form = this.fb.group(
       {
         firstName: ['', Validators.required],
@@ -25,6 +27,9 @@ export class RegisterFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.store.pipe(select('auth')).subscribe(authData => {
+      this.loading = authData.loading;
+    });
     this.errors = {
       firstName: [
         {

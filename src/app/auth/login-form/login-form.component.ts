@@ -1,6 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { select, Store } from '@ngrx/store';
 import { InputError } from 'projects/angular-material-form-controls/src/lib/models/input-error.model';
+import { Login } from 'src/app/models/auth/login.model';
 
 @Component({
   selector: 'app-login-form',
@@ -10,18 +12,20 @@ import { InputError } from 'projects/angular-material-form-controls/src/lib/mode
 export class LoginFormComponent implements OnInit {
   form: FormGroup;
   errors: { [key: string]: Array<InputError> };
-  @Output() loginEmitter: EventEmitter<boolean> = new EventEmitter();
+  loading: boolean;
+  @Output() loginEmitter: EventEmitter<Login> = new EventEmitter();
 
-  constructor(private fb: FormBuilder) {
-    this.form = this.fb.group(
-      {
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', Validators.required]
-      }
-    );
+  constructor(private fb: FormBuilder, private store: Store<any>) {
+    this.form = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
   }
 
   ngOnInit() {
+    this.store.pipe(select('auth')).subscribe(authData => {
+      this.loading = authData.loading;
+    });
     this.errors = {
       email: [
         {
@@ -44,7 +48,7 @@ export class LoginFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.form.valid) {
-      this.loginEmitter.emit();
+      this.loginEmitter.emit(this.form.value);
     }
   }
 }

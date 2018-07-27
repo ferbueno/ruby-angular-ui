@@ -14,7 +14,7 @@ export class HeaderToolbarComponent implements OnInit {
 
   ngOnInit() {
     this.store.pipe(select('auth')).subscribe(auth => {
-      this.username = auth.user;
+      this.username = auth.userData.user.first_name + ' ' + auth.userData.user.last_name;
     });
   }
 
