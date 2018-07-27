@@ -4,6 +4,24 @@
         autocomplete="on">
     <div class="row">
       <div class="col-12">
+        <blungo-material-input placeHolder="First Name"
+                               autocomplete="first-name"
+                               [control]="form.controls['firstName']"
+                               [errors]="errors['firstName']">
+        </blungo-material-input>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <blungo-material-input placeHolder="Last Name"
+                               autocomplete="last-name"
+                               [control]="form.controls['lastName']"
+                               [errors]="errors['lastName']">
+        </blungo-material-input>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
         <blungo-material-input placeHolder="Email"
                                autocomplete="email"
                                [control]="form.controls['email']"
@@ -14,7 +32,7 @@
     <div class="row">
       <div class="col-12">
         <blungo-material-input placeHolder="Password"
-                               autocomplete="current-password"
+                               autocomplete="password"
                                type="password"
                                [control]="form.controls['password']"
                                [errors]="errors['password']">
@@ -26,15 +44,15 @@
         <button color="primary"
                 class="btn-full-width"
                 mat-raised-button
-                type="submit">Login</button>
+                type="submit">Register</button>
       </div>
     </div>
     <div class="row">
       <div class="col-12">
-        <button [routerLink]="['../', 'register']"
+        <button [routerLink]="['../', 'login']"
                 class="btn-full-width"
                 mat-raised-button
-                type="submit">Create account</button>
+                type="submit">Cancel</button>
       </div>
     </div>
   </form>

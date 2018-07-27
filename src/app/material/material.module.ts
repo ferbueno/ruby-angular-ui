@@ -22,6 +22,7 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule,
+  MatSnackBarModule,
 } from '@angular/material';
 
 @NgModule({
@@ -49,6 +50,7 @@ import {
     MatProgressSpinnerModule,
     // Popups and modals
     MatDialogModule,
+    MatSnackBarModule,
     MatTooltipModule,
     // Data table
     MatPaginatorModule,
@@ -79,6 +81,7 @@ import {
     MatProgressSpinnerModule,
     // Popups and modals
     MatDialogModule,
+    MatSnackBarModule,
     MatTooltipModule,
     // Data table
     MatPaginatorModule,

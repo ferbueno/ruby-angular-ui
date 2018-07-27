@@ -1,0 +1,11 @@
+@import 'src/styles/colors';
+
+.container-fluid {
+  background-color: $primary-color;
+  height: 100vh;
+}
+
+.title {
+  padding-top: 10vh;
+  color: $primary-color-light;
+}

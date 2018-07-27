@@ -9,6 +9,8 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { LoginContainerComponent } from './login-container/login-container.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { reducer } from './state/auth.reducer';
+import { RegisterFormComponent } from './register-form/register-form.component';
+import { RegisterContainerComponent } from './register-container/register-container.component';
 
 @NgModule({
   imports: [
@@ -18,12 +20,21 @@ import { reducer } from './state/auth.reducer';
     AngularMaterialFormControlsModule,
     RouterModule.forChild([
       {
-        path: '',
+        path: 'login',
         component: LoginContainerComponent
+      },
+      {
+        path: 'register',
+        component: RegisterContainerComponent
+      },
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full'
       }
     ]),
     StoreModule.forFeature('auth', reducer)
   ],
-  declarations: [LoginContainerComponent, LoginFormComponent]
+  declarations: [LoginContainerComponent, LoginFormComponent, RegisterFormComponent, RegisterContainerComponent]
 })
 export class AuthModule { }
