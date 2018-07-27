@@ -1,12 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { Observable, throwError } from 'rxjs';
-import { catchError, tap, finalize } from 'rxjs/operators';
+import { catchError, finalize, tap } from 'rxjs/operators';
+import { Login } from 'src/app/models/auth/login.model';
 import { NewAccount } from 'src/app/models/auth/new-account.model';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { Login } from 'src/app/models/auth/login.model';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +38,7 @@ export class AuthService {
       .post<NewAccount>(this.registerUrl, payload)
       .pipe(
         catchError(error => {
-          const message = 'Ha ocurrido un error al crear su cuenta';
+          const message = 'An error ocurred creating your account';
           const action = 'Ok';
           this.snackBar.open(message, action, {
             duration: 3000

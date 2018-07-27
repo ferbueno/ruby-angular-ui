@@ -16,7 +16,7 @@ export class MaterialInputComponent implements OnInit, OnDestroy {
   @Input() autocomplete: string;
   @Input() control: FormControl;
   @Input() type = 'text';
-  @Input() errors: Array<InputError> = [];
+  @Input() errors: InputError[] = [];
 
   showErrors: boolean;
 

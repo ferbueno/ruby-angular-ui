@@ -11,7 +11,7 @@ import { Store, select } from '@ngrx/store';
 })
 export class RegisterFormComponent implements OnInit {
   form: FormGroup;
-  errors: { [key: string]: Array<InputError> };
+  errors: { [key: string]: InputError[]};
   loading: boolean;
   @Output() registerEmitter: EventEmitter<NewAccount> = new EventEmitter();
 

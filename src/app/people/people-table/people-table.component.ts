@@ -1,62 +1,25 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnChanges, Input } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { Person } from 'src/app/models/people/person.model';
 
 @Component({
   selector: 'app-people-table',
   templateUrl: './people-table.component.html',
   styleUrls: ['./people-table.component.scss']
 })
-export class PeopleTableComponent implements OnInit {
+export class PeopleTableComponent implements OnInit, OnChanges {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  data: Array<any>;
-  displayedColumns = ['first_name', 'last_name'];
+  @Input()data: Person[];
+  displayedColumns = ['name', 'last_name', 'age'];
   dataSource: MatTableDataSource<any>;
   constructor() { }
 
   ngOnInit() {
-    this.data = [
-      {
-        first_name: 'Test',
-        last_name: 'Test'
-      },
-      {
-        first_name: 'Test2',
-        last_name: 'Test2'
-      },
-      {
-        first_name: 'Test3',
-        last_name: 'Test3'
-      },
-      {
-        first_name: 'Test4',
-        last_name: 'Test4'
-      },
-      {
-        first_name: 'Test5',
-        last_name: 'Test5'
-      },
-      {
-        first_name: 'Test6',
-        last_name: 'Test6'
-      },
-      {
-        first_name: 'Test7',
-        last_name: 'Test7'
-      },
-      {
-        first_name: 'Test7',
-        last_name: 'Test7'
-      },
-      {
-        first_name: 'Test8',
-        last_name: 'Test8'
-      },
-      {
-        first_name: 'Test9',
-        last_name: 'Test9'
-      },
-    ];
+
+  }
+
+  ngOnChanges() {
     this.dataSource = new MatTableDataSource<any>(this.data);
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;

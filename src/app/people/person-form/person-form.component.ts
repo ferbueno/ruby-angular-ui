@@ -9,7 +9,7 @@ import { InputError } from 'projects/angular-material-form-controls/src/lib/mode
 })
 export class PersonFormComponent implements OnInit {
   form: FormGroup;
-  errors: { [key: string]: Array<InputError> };
+  errors: { [key: string]: InputError[] };
   @Output() saveEmitter: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private fb: FormBuilder) {

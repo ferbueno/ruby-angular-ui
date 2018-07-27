@@ -11,7 +11,7 @@ import { Login } from 'src/app/models/auth/login.model';
 })
 export class LoginFormComponent implements OnInit {
   form: FormGroup;
-  errors: { [key: string]: Array<InputError> };
+  errors: { [key: string]: InputError[]};
   loading: boolean;
   @Output() loginEmitter: EventEmitter<Login> = new EventEmitter();
 

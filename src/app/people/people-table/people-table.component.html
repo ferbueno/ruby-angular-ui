@@ -6,17 +6,24 @@
                  matSort>
 
         <!-- Name Column -->
-        <ng-container matColumnDef="first_name">
+        <ng-container matColumnDef="name">
           <mat-header-cell *matHeaderCellDef
                            mat-sort-header> Name</mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.first_name}}</mat-cell>
+          <mat-cell *matCellDef="let element"> {{element.name}}</mat-cell>
         </ng-container>
 
-        <!-- Description Column -->
+        <!-- LastName Column -->
         <ng-container matColumnDef="last_name">
           <mat-header-cell *matHeaderCellDef
-                           mat-sort-header> Lastname</mat-header-cell>
+                           mat-sort-header> Last Name</mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.last_name}}</mat-cell>
+        </ng-container>
+
+        <!-- Age Column -->
+        <ng-container matColumnDef="age">
+          <mat-header-cell *matHeaderCellDef
+                           mat-sort-header> Age</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.age}}</mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
