@@ -15,7 +15,7 @@ export class LoginFormComponent implements OnInit {
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group(
       {
-        email: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
         password: ['', Validators.required]
       }
     );
@@ -27,6 +27,10 @@ export class LoginFormComponent implements OnInit {
         {
           errorName: 'required',
           errorMessage: 'The email is required'
+        },
+        {
+          errorName: 'email',
+          errorMessage: 'Incorrect email format'
         }
       ],
       password: [

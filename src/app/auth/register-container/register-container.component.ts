@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NewAccount } from 'src/app/models/auth/new-account.model';
+import { AuthService } from 'src/app/auth/auth.service';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-register-container',
@@ -6,12 +10,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register-container.component.scss']
 })
 export class RegisterContainerComponent implements OnInit {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private snackBar: MatSnackBar
+  ) {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  register(newAccount: NewAccount) {
+    this.authService.register(newAccount).subscribe(() => {
+      const message = 'Su cuenta ha sido creada con éxito';
+      const action = 'Ok';
+      this.snackBar.open(message, action, {
+        duration: 3000
+      });
+      this.router.navigateByUrl('auth/login');
+    });
   }
-
-  register() {}
-
 }

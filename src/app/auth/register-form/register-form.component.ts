@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { InputError } from 'projects/angular-material-form-controls/src/lib/models/input-error.model';
+import { NewAccount } from 'src/app/models/auth/new-account.model';
 
 @Component({
   selector: 'app-register-form',
@@ -10,14 +11,14 @@ import { InputError } from 'projects/angular-material-form-controls/src/lib/mode
 export class RegisterFormComponent implements OnInit {
   form: FormGroup;
   errors: { [key: string]: Array<InputError> };
-  @Output() registerEmitter: EventEmitter<boolean> = new EventEmitter();
+  @Output() registerEmitter: EventEmitter<NewAccount> = new EventEmitter();
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group(
       {
         firstName: ['', Validators.required],
         lastName: ['', Validators.required],
-        email: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
         password: ['', Validators.required]
       }
     );
@@ -41,6 +42,10 @@ export class RegisterFormComponent implements OnInit {
         {
           errorName: 'required',
           errorMessage: 'The email is required'
+        },
+        {
+          errorName: 'email',
+          errorMessage: 'Incorrect email format'
         }
       ],
       password: [
@@ -54,7 +59,7 @@ export class RegisterFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.form.valid) {
-      this.registerEmitter.emit();
+      this.registerEmitter.emit(this.form.value);
     }
   }
 }
