@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthService } from '../../auth/services/auth.service';
 import { getAuthState } from 'src/app/auth/state/auth.selector';
 import { AppState } from 'src/app/models/state/app-state.model';
 

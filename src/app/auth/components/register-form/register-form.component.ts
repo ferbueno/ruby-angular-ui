@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { InputError } from 'projects/angular-material-form-controls/src/lib/models/input-error.model';
 import { getAuthState } from 'src/app/auth/state/auth.selector';
-import { NewAccount } from 'src/app/models/auth/new-account.model';
+import { NewAccount } from '../../models/new-account.model';
 import { AppState } from 'src/app/models/state/app-state.model';
 
 @Component({

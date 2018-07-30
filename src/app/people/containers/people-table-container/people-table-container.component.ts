@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PeopleService } from 'src/app/people/people.service';
-import { Person } from 'src/app/models/people/person.model';
+import { Person } from '../../models/person.model';
 
 @Component({
   selector: 'app-people-table-container',

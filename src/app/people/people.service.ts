@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Person } from 'src/app/models/people/person.model';
+import { Person } from './models/person.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

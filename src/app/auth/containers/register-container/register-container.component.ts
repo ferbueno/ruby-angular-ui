@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NewAccount } from 'src/app/models/auth/new-account.model';
-import { AuthService } from 'src/app/auth/auth.service';
+import { NewAccount } from '../../models/new-account.model';
+import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 

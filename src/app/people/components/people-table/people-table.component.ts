@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, OnChanges, Input } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
-import { Person } from 'src/app/models/people/person.model';
+import { Person } from '../../models/person.model';
 
 @Component({
   selector: 'app-people-table',
