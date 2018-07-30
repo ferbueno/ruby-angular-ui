@@ -25,6 +25,11 @@ export function reducer(
         ...state,
         userData: action.payload
       };
+      case AuthActionTypes.UserLogout:
+      return {
+        ...state,
+        userData: initialState.userData
+      };
     case AuthActionTypes.AuthLoading:
       return {
         ...state,

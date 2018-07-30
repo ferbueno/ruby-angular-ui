@@ -4,12 +4,15 @@ import { MatSnackBar } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { Observable, throwError } from 'rxjs';
 import { catchError, finalize, tap } from 'rxjs/operators';
-import { AuthLoading, UserLogin } from 'src/app/auth/state/auth.actions';
+import { AuthLoading, UserLogin, UserLogout } from 'src/app/auth/state/auth.actions';
 import { InterceptorSkipHeader } from 'src/app/auth/token.interceptor';
 import { Login } from 'src/app/models/auth/login.model';
 import { NewAccount } from 'src/app/models/auth/new-account.model';
 import { UserData } from 'src/app/models/state/auth-state.model';
 import { environment } from 'src/environments/environment';
+import { AppState } from 'src/app/models/state/app-state.model';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,14 +20,18 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   registerUrl: string = environment.apiUrl + '/users';
   loginUrl: string = environment.apiUrl + '/login';
+  jwtHelperService: JwtHelperService;
 
   constructor(
     private http: HttpClient,
     private snackBar: MatSnackBar,
-    private store: Store<any>
-  ) {}
+    private store: Store<AppState>,
+    private router: Router
+  ) {
+    this.jwtHelperService = new JwtHelperService();
+  }
 
-  register(newAccount: NewAccount): Observable<any> {
+  register(newAccount: NewAccount): Observable<NewAccount> {
     this.store.dispatch(new AuthLoading(true));
     const payload = {
       user: {
@@ -54,7 +61,7 @@ export class AuthService {
       );
   }
 
-  login(login: Login) {
+  login(login: Login): Observable<UserData> {
     this.store.dispatch(new AuthLoading(true));
     const payload = {
       login: login
@@ -65,6 +72,7 @@ export class AuthService {
       .pipe(
         tap(user => {
           this.store.dispatch(new UserLogin(user));
+          sessionStorage.setItem('token', user.token);
         })
       )
       .pipe(
@@ -84,7 +92,14 @@ export class AuthService {
       );
   }
 
+  logout(): void {
+    this.store.dispatch(new UserLogout());
+    sessionStorage.removeItem('token');
+    this.router.navigate(['auth', 'login']);
+  }
+
   isAuthenticated(): boolean {
-    return true;
+    const token = sessionStorage.getItem('token');
+    return !this.jwtHelperService.isTokenExpired(token);
   }
 }

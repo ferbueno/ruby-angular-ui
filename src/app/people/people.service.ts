@@ -16,7 +16,8 @@ export class PeopleService {
 
   getPeople(): Observable<Person[]> {
     return this.http.get<Person[]>(this.peopleUrl).pipe(
-      catchError(error => {
+      catchError((error) => {
+        console.log(error);
         const message = 'There was a problem retreiving your people list';
         const action = 'Ok';
         this.snackBar.open(message, action, {
