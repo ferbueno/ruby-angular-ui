@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AuthGuard } from 'src/app/auth/auth.guard';
 
 @NgModule({
   imports: [
@@ -10,7 +11,8 @@ import { RouterModule } from '@angular/router';
       },
       {
         path: 'dashboard',
-        loadChildren: 'src/app/dashboard/dashboard.module#DashboardModule'
+        loadChildren: 'src/app/dashboard/dashboard.module#DashboardModule',
+        canActivate: [AuthGuard]
       },
       {
         path: '',
@@ -20,5 +22,6 @@ import { RouterModule } from '@angular/router';
     ])
   ],
   exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class RoutingModule { }

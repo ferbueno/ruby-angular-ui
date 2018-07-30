@@ -6,9 +6,7 @@ import { catchError } from 'rxjs/operators';
 import { Person } from 'src/app/models/people/person.model';
 import { environment } from 'src/environments/environment';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PeopleService {
   peopleUrl = environment + '/people';
 
