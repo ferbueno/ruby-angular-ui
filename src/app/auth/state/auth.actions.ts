@@ -1,22 +1,35 @@
 import { Action } from '@ngrx/store';
 import { UserData } from 'src/app/models/state/auth-state.model';
+import { Login } from 'src/app/models/auth/login.model';
 
 export enum AuthActionTypes {
-  UserLogin = '[Login] Get User',
+  LoginAction = '[Login] Load Login',
+  LoginSuccess = '[Login] Login Successful',
+  LoginFailed = '[Login] Login Failed',
   UserLogout = '[Logout] Clear User',
   AuthLoading = '[API] Wait Response'
 }
 
-export class UserLogin implements Action {
-  readonly type = AuthActionTypes.UserLogin;
+export class LoginAction implements Action {
+  readonly type = AuthActionTypes.LoginAction;
+
+  constructor(public payload: Login) {}
+}
+
+export class LoginFailed implements Action {
+  readonly type = AuthActionTypes.LoginFailed;
+
+  constructor(public payload: UserData) {}
+}
+
+export class LoginSuccess implements Action {
+  readonly type = AuthActionTypes.LoginSuccess;
 
   constructor(public payload: UserData) {}
 }
 
 export class UserLogout implements Action {
   readonly type = AuthActionTypes.UserLogout;
-
-  constructor() {}
 }
 
 export class AuthLoading implements Action {
@@ -25,4 +38,4 @@ export class AuthLoading implements Action {
   constructor(public payload: boolean) {}
 }
 
-export type AuthActions = UserLogin | UserLogout | AuthLoading;
+export type AuthActions = LoginAction | LoginFailed |  LoginSuccess | UserLogout | AuthLoading;

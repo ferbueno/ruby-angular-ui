@@ -20,12 +20,17 @@ export function reducer(
   action: AuthActions
 ): AuthState {
   switch (action.type) {
-    case AuthActionTypes.UserLogin:
+    case AuthActionTypes.LoginAction:
+      return {
+        ...state,
+        loading: true
+      };
+    case AuthActionTypes.LoginSuccess:
       return {
         ...state,
         userData: action.payload
       };
-      case AuthActionTypes.UserLogout:
+    case AuthActionTypes.UserLogout:
       return {
         ...state,
         userData: initialState.userData

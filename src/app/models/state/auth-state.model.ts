@@ -1,3 +1,5 @@
+import { Login } from 'src/app/models/auth/login.model';
+
 export interface AuthState {
   userData: UserData;
   loading: boolean;

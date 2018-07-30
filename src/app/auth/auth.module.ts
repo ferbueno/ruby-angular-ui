@@ -2,15 +2,16 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { AngularMaterialFormControlsModule } from 'angular-material-form-controls';
+import { LoginFormComponent } from 'src/app/auth/components/login-form/login-form.component';
+import { RegisterFormComponent } from 'src/app/auth/components/register-form/register-form.component';
+import { LoginContainerComponent } from 'src/app/auth/containers/login-container/login-container.component';
+import { RegisterContainerComponent } from 'src/app/auth/containers/register-container/register-container.component';
+import { AuthEffects } from 'src/app/auth/state/auth.effects';
+import { reducer } from 'src/app/auth/state/auth.reducers';
 import { MaterialModule } from 'src/app/material/material.module';
-
-import { LoginContainerComponent } from './login-container/login-container.component';
-import { LoginFormComponent } from './login-form/login-form.component';
-import { reducer } from './state/auth.reducers';
-import { RegisterFormComponent } from './register-form/register-form.component';
-import { RegisterContainerComponent } from './register-container/register-container.component';
 
 @NgModule({
   imports: [
@@ -33,8 +34,14 @@ import { RegisterContainerComponent } from './register-container/register-contai
         pathMatch: 'full'
       }
     ]),
-    StoreModule.forFeature('auth', reducer)
+    StoreModule.forFeature('auth', reducer),
+    EffectsModule.forFeature([AuthEffects])
   ],
-  declarations: [LoginContainerComponent, LoginFormComponent, RegisterFormComponent, RegisterContainerComponent]
+  declarations: [
+    LoginContainerComponent,
+    LoginFormComponent,
+    RegisterFormComponent,
+    RegisterContainerComponent
+  ]
 })
-export class AuthModule { }
+export class AuthModule {}

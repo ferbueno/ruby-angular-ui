@@ -4,7 +4,7 @@ import { MatSnackBar } from '@angular/material';
 import { Store } from '@ngrx/store';
 import { Observable, throwError } from 'rxjs';
 import { catchError, finalize, tap } from 'rxjs/operators';
-import { AuthLoading, UserLogin, UserLogout } from 'src/app/auth/state/auth.actions';
+import { AuthLoading, LoginSuccess, UserLogout } from 'src/app/auth/state/auth.actions';
 import { InterceptorSkipHeader } from 'src/app/auth/token.interceptor';
 import { Login } from 'src/app/models/auth/login.model';
 import { NewAccount } from 'src/app/models/auth/new-account.model';
@@ -71,7 +71,7 @@ export class AuthService {
       .post<UserData>(this.loginUrl, payload, { headers })
       .pipe(
         tap(user => {
-          this.store.dispatch(new UserLogin(user));
+          this.store.dispatch(new LoginSuccess(user));
           sessionStorage.setItem('token', user.token);
         })
       )
