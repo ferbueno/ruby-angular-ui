@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { Store } from '@ngrx/store';
@@ -7,13 +7,14 @@ import { catchError, finalize, tap } from 'rxjs/operators';
 import { Login } from 'src/app/models/auth/login.model';
 import { NewAccount } from 'src/app/models/auth/new-account.model';
 import { environment } from 'src/environments/environment';
+import { InterceptorSkipHeader } from 'src/app/auth/token.interceptor';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  registerUrl = environment.apiUrl + '/users';
-  loginUrl = environment.apiUrl + '/login';
+  registerUrl: string = environment.apiUrl + '/users';
+  loginUrl: string = environment.apiUrl + '/login';
 
   constructor(
     private http: HttpClient,
@@ -34,8 +35,9 @@ export class AuthService {
         password: newAccount.password
       }
     };
+    const headers = new HttpHeaders().set(InterceptorSkipHeader, '');
     return this.http
-      .post<NewAccount>(this.registerUrl, payload)
+      .post<NewAccount>(this.registerUrl, payload, { headers })
       .pipe(
         catchError(error => {
           const message = 'An error ocurred creating your account';
@@ -64,8 +66,9 @@ export class AuthService {
     const payload = {
       login: login
     };
+    const headers = new HttpHeaders().set(InterceptorSkipHeader, '');
     return this.http
-      .post<Login>(this.loginUrl, payload)
+      .post<Login>(this.loginUrl, payload, { headers })
       .pipe(
         tap(user => {
           this.store.dispatch({

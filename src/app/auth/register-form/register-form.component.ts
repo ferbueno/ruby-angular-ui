@@ -1,8 +1,10 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { select, Store } from '@ngrx/store';
 import { InputError } from 'projects/angular-material-form-controls/src/lib/models/input-error.model';
+import { getAuthState } from 'src/app/auth/state/auth.selector';
 import { NewAccount } from 'src/app/models/auth/new-account.model';
-import { Store, select } from '@ngrx/store';
+import { AppState } from 'src/app/models/state/app-state.model';
 
 @Component({
   selector: 'app-register-form',
@@ -15,7 +17,7 @@ export class RegisterFormComponent implements OnInit {
   loading: boolean;
   @Output() registerEmitter: EventEmitter<NewAccount> = new EventEmitter();
 
-  constructor(private fb: FormBuilder, private store: Store<any>) {
+  constructor(private fb: FormBuilder, private store: Store<AppState>) {
     this.form = this.fb.group(
       {
         firstName: ['', Validators.required],
@@ -27,7 +29,7 @@ export class RegisterFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.pipe(select('auth')).subscribe(authData => {
+    this.store.pipe(select(getAuthState)).subscribe(authData => {
       this.loading = authData.loading;
     });
     this.errors = {

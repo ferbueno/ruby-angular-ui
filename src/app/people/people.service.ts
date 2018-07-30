@@ -6,9 +6,11 @@ import { catchError } from 'rxjs/operators';
 import { Person } from 'src/app/models/people/person.model';
 import { environment } from 'src/environments/environment';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class PeopleService {
-  peopleUrl = environment + '/people';
+  peopleUrl: string = environment.apiUrl + '/people';
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) {}
 

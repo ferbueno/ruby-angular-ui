@@ -1,11 +1,13 @@
 export interface AuthState {
   userData: {
     user: {
-      id: Number;
-      user: String;
-      email: String;
+      id: number;
+      first_name: string;
+      last_name: string;
+      user: string;
+      email: string;
     };
-    token: String;
+    token: string;
   };
-  loading: Boolean;
+  loading: boolean;
 }
