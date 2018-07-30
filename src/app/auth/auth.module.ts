@@ -8,7 +8,7 @@ import { MaterialModule } from 'src/app/material/material.module';
 
 import { LoginContainerComponent } from './login-container/login-container.component';
 import { LoginFormComponent } from './login-form/login-form.component';
-import { reducer } from './state/auth.reducer';
+import { reducer } from './state/auth.reducers';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { RegisterContainerComponent } from './register-container/register-container.component';
 

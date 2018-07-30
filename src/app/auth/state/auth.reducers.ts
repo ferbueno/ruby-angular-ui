@@ -1,4 +1,5 @@
 import { AuthState } from 'src/app/models/state/auth-state.model';
+import { AuthActions, AuthActionTypes } from 'src/app/auth/state/auth.actions';
 
 const initialState: AuthState = {
   userData: {
@@ -14,14 +15,17 @@ const initialState: AuthState = {
   loading: false
 };
 
-export function reducer(state: AuthState = initialState, action): AuthState {
+export function reducer(
+  state: AuthState = initialState,
+  action: AuthActions
+): AuthState {
   switch (action.type) {
-    case 'USER_LOGIN':
+    case AuthActionTypes.UserLogin:
       return {
         ...state,
         userData: action.payload
       };
-    case 'AUTH_LOADING':
+    case AuthActionTypes.AuthLoading:
       return {
         ...state,
         loading: action.payload
