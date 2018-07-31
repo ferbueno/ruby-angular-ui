@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PeopleService } from 'src/app/people/people.service';
 import { Person } from '../../models/person.model';
+import { Store } from '@ngrx/store';
+import { State } from 'src/app/state/app.state';
+import { GetPeople } from 'src/app/people/state/people.actions';
 
 @Component({
   selector: 'app-people-table-container',
@@ -8,13 +10,11 @@ import { Person } from '../../models/person.model';
   styleUrls: ['./people-table-container.component.scss']
 })
 export class PeopleTableContainerComponent implements OnInit {
-  data: Person[];
+  data: Person[] = [];
 
-  constructor(private peopleService: PeopleService) {}
+  constructor(private store: Store<State>) {}
 
   ngOnInit() {
-    this.peopleService.getPeople().subscribe(people => {
-      this.data = people;
-    });
+    this.store.dispatch(new GetPeople);
   }
 }
