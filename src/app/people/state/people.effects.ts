@@ -1,17 +1,29 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/internal/operators/switchMap';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { Person } from 'src/app/people/models/person.model';
 import { PeopleService } from 'src/app/people/people.service';
-import { AddPerson, AddPersonSuccess, GetPeopleSuccess, PeopleActionTypes, AddPersonFailed } from 'src/app/people/state/people.actions';
+import {
+  AddPerson,
+  AddPersonFailed,
+  AddPersonSuccess,
+  GetPeopleSuccess,
+  GetPerson,
+  GetPersonFailed,
+  GetPersonSuccess,
+  PeopleActionTypes,
+} from 'src/app/people/state/people.actions';
+import { Action } from '@ngrx/store';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class PeopleEffects {
   constructor(
     private actions$: Actions,
-    private peopleService: PeopleService
+    private peopleService: PeopleService,
+    private router: Router
   ) {}
 
   @Effect()
@@ -31,5 +43,26 @@ export class PeopleEffects {
         catchError(err => of(new AddPersonFailed()))
       )
     )
+  );
+
+  @Effect()
+  getPerson$: Observable<Action> = this.actions$.pipe(
+    ofType(PeopleActionTypes.GetPerson),
+    map((action: GetPerson) => action.payload),
+    mergeMap((id: number) =>
+      this.peopleService.getPerson(id).pipe(
+        map((person: Person) => new GetPersonSuccess(person)),
+        catchError(err => of(new GetPersonFailed()))
+      )
+    )
+  );
+
+  @Effect({ dispatch: false })
+  getPersonSuccess$: Observable<Action> = this.actions$.pipe(
+    ofType(PeopleActionTypes.GetPeopleSuccess),
+    tap((lol) => {
+      console.log(lol);
+      this.router.navigateByUrl('/dashboard/people');
+    })
   );
 }

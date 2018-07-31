@@ -29,7 +29,7 @@ export class PersonFormComponent implements OnInit {
 
   ngOnInit() {
     this.store.pipe(select(getPeopleState)).subscribe(peopleData => {
-      this.loading = peopleData.loading;
+      this.loading = peopleData.loadingSet;
     });
     this.errors = {
       firstname: [

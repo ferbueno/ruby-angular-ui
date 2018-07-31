@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Person } from '../../models/person.model';
 import { Store, select } from '@ngrx/store';
 import { State } from 'src/app/state/app.state';
-import { GetPeople } from 'src/app/people/state/people.actions';
+import { GetPeople, GetPerson } from 'src/app/people/state/people.actions';
 import { getPeopleState } from 'src/app/people/state/people.selectors';
 
 @Component({
@@ -22,5 +22,9 @@ export class PeopleTableContainerComponent implements OnInit {
       this.data = peopleData.people;
       this.loading = peopleData.loadingGet;
     });
+  }
+
+  edit(id: number): void {
+    this.store.dispatch(new GetPerson(id));
   }
 }

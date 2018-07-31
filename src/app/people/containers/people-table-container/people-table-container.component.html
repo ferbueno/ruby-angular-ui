@@ -13,7 +13,7 @@
     <div *ngIf="data.length"
          class="row">
       <div class="col-12">
-        <app-people-table [data]="data"></app-people-table>
+        <app-people-table [data]="data" (editEmitter)="edit($event)"></app-people-table>
       </div>
     </div>
     <div id="add-button-container">

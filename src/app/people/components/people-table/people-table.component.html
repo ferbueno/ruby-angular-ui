@@ -35,7 +35,8 @@
               <mat-icon>more_horiz</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item>
+              <button (click)="edit(element.id)"
+                      mat-menu-item>
                 <span>Edit</span>
               </button>
               <button mat-menu-item>

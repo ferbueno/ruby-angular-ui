@@ -29,6 +29,10 @@ import { SharedModule } from 'src/app/shared/shared.module';
       {
         path: 'add',
         component: PersonFormContainerComponent
+      },
+      {
+        path: ':id',
+        component: PersonFormContainerComponent
       }
     ]),
     StoreModule.forFeature('people', peopleReducer),

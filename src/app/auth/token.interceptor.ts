@@ -32,7 +32,8 @@ export class TokenInterceptor implements HttpInterceptor {
     } else {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${this.token}`
+          'Authorization': `Bearer ${this.token}`,
+          'Content-Type': 'application/json'
         }
       });
       return next.handle(request);
