@@ -29,6 +29,11 @@ export function authReducer(
         userData: action.payload,
         loading: false
       };
+      case AuthActionTypes.LoginFailed:
+      return {
+        ...state,
+        loading: false
+      };
     case AuthActionTypes.UserLogout:
       return {
         ...state,

@@ -18,8 +18,6 @@ export class LoginAction implements Action {
 
 export class LoginFailed implements Action {
   readonly type = AuthActionTypes.LoginFailed;
-
-  constructor(public payload: UserData) {}
 }
 
 export class LoginSuccess implements Action {

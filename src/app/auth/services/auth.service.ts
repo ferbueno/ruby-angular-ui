@@ -36,7 +36,6 @@ export class AuthService {
   }
 
   register(newAccount: NewAccount): Observable<NewAccount> {
-    this.store.dispatch(new AuthLoading(true));
     const payload = {
       user: {
         first_name: newAccount.firstName,
@@ -58,15 +57,9 @@ export class AuthService {
           return throwError(error);
         })
       )
-      .pipe(
-        finalize(() => {
-          this.store.dispatch(new AuthLoading(false));
-        })
-      );
   }
 
   login(login: Login): Observable<UserData> {
-    this.store.dispatch(new AuthLoading(true));
     const payload = {
       login: login
     };
@@ -91,11 +84,6 @@ export class AuthService {
           return throwError(error);
         })
       )
-      .pipe(
-        finalize(() => {
-          this.store.dispatch(new AuthLoading(false));
-        })
-      );
   }
 
   logout(): void {

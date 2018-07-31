@@ -26,8 +26,15 @@ export class PeopleService {
   }
 
   addPerson(person: Person): Observable<Person> {
+    const payload = {
+      person: {
+        name: person.name,
+        last_name: person.lastName,
+        age: +person.age
+      }
+    };
     return this.http
-      .post<Person>(this.peopleUrl, person)
+      .post<Person>(this.peopleUrl, payload)
       .pipe(
         catchError(() =>
           this.handleError('There was a problem adding this person')

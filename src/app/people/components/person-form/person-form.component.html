@@ -1,32 +1,55 @@
 <div class="container">
-    <form [formGroup]="form"
-          (ngSubmit)="onSubmit()"
-          autocomplete="on">
-      <div class="row">
-        <div class="col-12">
-          <blungo-material-input placeHolder="Firstname"
-                                 autocomplete="firstname"
-                                 [control]="form.controls['firstname']"
-                                 [errors]="errors['firstname']">
-          </blungo-material-input>
-        </div>
+  <form [formGroup]="form"
+        (ngSubmit)="onSubmit()"
+        autocomplete="on">
+    <div class="row">
+      <div class="col-12">
+        <blungo-material-input placeHolder="Name"
+                               autocomplete="name"
+                               [control]="form.controls['name']"
+                               [errors]="errors['name']">
+        </blungo-material-input>
       </div>
-      <div class="row">
-        <div class="col-12">
-          <blungo-material-input placeHolder="Lastname"
-                                 autocomplete="lastname"
-                                 type="password"
-                                 [control]="form.controls['lastname']"
-                                 [errors]="errors['lastname']">
-          </blungo-material-input>
-        </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <blungo-material-input placeHolder="Last Name"
+                               autocomplete="last-name"
+                               [control]="form.controls['lastName']"
+                               [errors]="errors['lastName']">
+        </blungo-material-input>
       </div>
-      <div class="row">
-        <div class="col-12">
-          <button class="btn-full-width"
-                  mat-raised-button
-                  type="submit">Save</button>
-        </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <blungo-material-input placeHolder="Age"
+                               autocomplete="age"
+                               [control]="form.controls['age']"
+                               [errors]="errors['age']">
+        </blungo-material-input>
       </div>
-    </form>
-  </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <button color="primary"
+                class="btn-full-width"
+                mat-raised-button
+                type="submit">Save
+          <mat-spinner *ngIf="loading"
+                       class="spinner"
+                       color="accent"
+                       [diameter]="20"></mat-spinner>
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <button [routerLink]="['../']"
+                class="btn-full-width"
+                mat-raised-button
+                type="submit">Cancel
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

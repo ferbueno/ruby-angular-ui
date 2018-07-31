@@ -10,6 +10,8 @@ import { PersonFormComponent } from 'src/app/people/components/person-form/perso
 import { PeopleTableContainerComponent } from 'src/app/people/containers/people-table-container/people-table-container.component';
 import { PersonFormContainerComponent } from 'src/app/people/containers/person-form-container/person-form-container.component';
 import { PeopleEffects } from 'src/app/people/state/people.effects';
+import { StoreModule } from '@ngrx/store';
+import { peopleReducer } from 'src/app/people/state/people.reducers';
 
 @NgModule({
   imports: [
@@ -27,6 +29,7 @@ import { PeopleEffects } from 'src/app/people/state/people.effects';
         component: PersonFormContainerComponent
       }
     ]),
+    StoreModule.forFeature('people', peopleReducer),
     EffectsModule.forFeature([PeopleEffects])
   ],
   declarations: [

@@ -28,7 +28,7 @@ export class AuthEffects {
     mergeMap((login: Login) =>
       this.authService.login(login).pipe(
         map(user => new LoginSuccess(user)),
-        catchError(err => of(new LoginFailed(err)))
+        catchError(() => of(new LoginFailed()))
       )
     )
   );

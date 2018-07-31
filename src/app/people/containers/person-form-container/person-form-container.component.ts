@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Person } from 'src/app/people/models/person.model';
+import { AddPerson } from 'src/app/people/state/people.actions';
+import { State } from 'src/app/state/app.state';
 
 @Component({
   selector: 'app-person-form-container',
@@ -6,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./person-form-container.component.scss']
 })
 export class PersonFormContainerComponent implements OnInit {
-  constructor() {}
+  constructor(private store: Store<State>) {}
 
   ngOnInit() {}
 
-  save() {}
+  save(person: Person) {
+    this.store.dispatch(new AddPerson(person));
+  }
 }
