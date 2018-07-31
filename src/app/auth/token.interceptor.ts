@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { State } from 'src/app/state/app.state';
+import { getAuthState } from 'src/app/auth/state/auth.selector';
 
 export const InterceptorSkipHeader = 'X-Skip-Interceptor';
 
@@ -15,7 +16,7 @@ export const InterceptorSkipHeader = 'X-Skip-Interceptor';
 export class TokenInterceptor implements HttpInterceptor {
   token: string;
   constructor(private store: Store<State>) {
-    this.store.pipe(select('auth')).subscribe(auth => {
+    this.store.pipe(select(getAuthState)).subscribe(auth => {
       this.token = auth.userData.token;
     });
   }

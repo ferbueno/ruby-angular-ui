@@ -32,4 +32,12 @@ export class AuthEffects {
       )
     )
   );
+
+  @Effect({ dispatch: false })
+  loginSuccess$: Observable<Action> = this.actions$.pipe(
+    ofType(AuthActionTypes.LoginSuccess),
+    tap(() => {
+      this.router.navigateByUrl('/dashboard');
+    })
+  );
 }

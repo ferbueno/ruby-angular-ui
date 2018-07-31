@@ -5,17 +5,15 @@ const initialState: AuthState = {
   userData: {
     user: {
       id: 0,
-      first_name: '',
-      last_name: '',
-      user: '',
-      email: ''
+      first_name: sessionStorage.getItem('first_name'),
+      last_name: sessionStorage.getItem('last_name')
     },
-    token: ''
+    token: sessionStorage.getItem('token')
   },
   loading: false
 };
 
-export function reducer(
+export function authReducer(
   state: AuthState = initialState,
   action: AuthActions
 ): AuthState {

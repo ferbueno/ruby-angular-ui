@@ -74,9 +74,11 @@ export class AuthService {
     return this.http
       .post<UserData>(this.loginUrl, payload, { headers })
       .pipe(
-        tap(user => {
-          this.store.dispatch(new LoginSuccess(user));
-          sessionStorage.setItem('token', user.token);
+        tap(userData => {
+          this.store.dispatch(new LoginSuccess(userData));
+          sessionStorage.setItem('token', userData.token);
+          sessionStorage.setItem('first_name', userData.user.first_name);
+          sessionStorage.setItem('last_name', userData.user.last_name);
         })
       )
       .pipe(
@@ -99,6 +101,8 @@ export class AuthService {
   logout(): void {
     this.store.dispatch(new UserLogout());
     sessionStorage.removeItem('token');
+    sessionStorage.removeItem('first_name');
+    sessionStorage.removeItem('last_name');
     this.router.navigate(['auth', 'login']);
   }
 

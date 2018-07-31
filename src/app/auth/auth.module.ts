@@ -10,7 +10,6 @@ import { RegisterFormComponent } from 'src/app/auth/components/register-form/reg
 import { LoginContainerComponent } from 'src/app/auth/containers/login-container/login-container.component';
 import { RegisterContainerComponent } from 'src/app/auth/containers/register-container/register-container.component';
 import { AuthEffects } from 'src/app/auth/state/auth.effects';
-import { reducer } from 'src/app/auth/state/auth.reducers';
 import { MaterialModule } from 'src/app/material/material.module';
 
 @NgModule({
@@ -34,7 +33,6 @@ import { MaterialModule } from 'src/app/material/material.module';
         pathMatch: 'full'
       }
     ]),
-    StoreModule.forFeature('auth', reducer),
     EffectsModule.forFeature([AuthEffects])
   ],
   declarations: [
