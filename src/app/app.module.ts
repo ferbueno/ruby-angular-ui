@@ -9,6 +9,7 @@ import { TokenInterceptor } from 'src/app/auth/token.interceptor';
 import { MaterialModule } from 'src/app/material/material.module';
 import { RoutingModule } from 'src/app/routing/routing.module';
 import { environment } from 'src/environments/environment';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 import { AppComponent } from './app.component';
 
@@ -22,7 +23,10 @@ import { AppComponent } from './app.component';
     HttpClientModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
-    StoreDevtoolsModule.instrument({
+    StoreRouterConnectingModule.forRoot({
+      stateKey: 'router', // name of reducer key
+    }),
+        StoreDevtoolsModule.instrument({
       name: 'Rails App',
       maxAge: 25,
       logOnly: environment.production

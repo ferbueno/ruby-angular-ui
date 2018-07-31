@@ -28,7 +28,8 @@ export function reducer(
     case AuthActionTypes.LoginSuccess:
       return {
         ...state,
-        userData: action.payload
+        userData: action.payload,
+        loading: false
       };
     case AuthActionTypes.UserLogout:
       return {
