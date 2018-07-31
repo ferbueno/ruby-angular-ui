@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Login } from 'src/app/auth/models/login.model';
 import { LoginAction } from 'src/app/auth/state/auth.actions';
-import { Login } from '../../models/login.model';
-import { AppState } from 'src/app/models/state/app-state.model';
+import { State } from 'src/app/state/app.state';
 
 @Component({
   selector: 'app-login-container',
@@ -10,7 +10,7 @@ import { AppState } from 'src/app/models/state/app-state.model';
   styleUrls: ['./login-container.component.scss']
 })
 export class LoginContainerComponent implements OnInit {
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<State>) {}
 
   ngOnInit() {}
 

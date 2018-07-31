@@ -1,4 +1,4 @@
-import { AuthState } from 'src/app/models/state/auth-state.model';
+import { AuthState } from 'src/app/auth/state';
 import { AuthActions, AuthActionTypes } from 'src/app/auth/state/auth.actions';
 
 const initialState: AuthState = {

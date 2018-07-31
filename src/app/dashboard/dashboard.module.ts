@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HeaderToolbarComponent } from './header-toolbar/header-toolbar.component';
+import { DashboardComponent } from 'src/app/dashboard/components/dashboard/dashboard.component';
+import { HeaderToolbarComponent } from 'src/app/dashboard/components/header-toolbar/header-toolbar.component';
 import { MaterialModule } from 'src/app/material/material.module';
 
 @NgModule({

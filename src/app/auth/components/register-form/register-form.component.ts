@@ -2,9 +2,9 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { InputError } from 'projects/angular-material-form-controls/src/lib/models/input-error.model';
+import { NewAccount } from 'src/app/auth/models/new-account.model';
 import { getAuthState } from 'src/app/auth/state/auth.selector';
-import { NewAccount } from '../../models/new-account.model';
-import { AppState } from 'src/app/models/state/app-state.model';
+import { State } from 'src/app/state/app.state';
 
 @Component({
   selector: 'app-register-form',
@@ -13,19 +13,17 @@ import { AppState } from 'src/app/models/state/app-state.model';
 })
 export class RegisterFormComponent implements OnInit {
   form: FormGroup;
-  errors: { [key: string]: InputError[]};
+  errors: { [key: string]: InputError[] };
   loading: boolean;
   @Output() registerEmitter: EventEmitter<NewAccount> = new EventEmitter();
 
-  constructor(private fb: FormBuilder, private store: Store<AppState>) {
-    this.form = this.fb.group(
-      {
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
-        email: ['', [Validators.required, Validators.email]],
-        password: ['', Validators.required]
-      }
-    );
+  constructor(private fb: FormBuilder, private store: Store<State>) {
+    this.form = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
   }
 
   ngOnInit() {

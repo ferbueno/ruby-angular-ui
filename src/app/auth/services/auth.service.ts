@@ -1,18 +1,22 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { Store } from '@ngrx/store';
 import { Observable, throwError } from 'rxjs';
 import { catchError, finalize, tap } from 'rxjs/operators';
-import { AuthLoading, LoginSuccess, UserLogout } from 'src/app/auth/state/auth.actions';
+import { Login } from 'src/app/auth/models/login.model';
+import { NewAccount } from 'src/app/auth/models/new-account.model';
+import { UserData } from 'src/app/auth/state';
+import {
+  AuthLoading,
+  LoginSuccess,
+  UserLogout
+} from 'src/app/auth/state/auth.actions';
 import { InterceptorSkipHeader } from 'src/app/auth/token.interceptor';
-import { Login } from '../models/login.model';
-import { NewAccount } from '../models/new-account.model';
-import { UserData } from 'src/app/models/state/auth-state.model';
+import { State } from 'src/app/state/app.state';
 import { environment } from 'src/environments/environment';
-import { AppState } from 'src/app/models/state/app-state.model';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +29,7 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private snackBar: MatSnackBar,
-    private store: Store<AppState>,
+    private store: Store<State>,
     private router: Router
   ) {
     this.jwtHelperService = new JwtHelperService();

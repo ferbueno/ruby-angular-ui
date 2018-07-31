@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NewAccount } from '../../models/new-account.model';
-import { AuthService } from '../../services/auth.service';
-import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
+import { NewAccount } from 'src/app/auth/models/new-account.model';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-register-container',

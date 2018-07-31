@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
-import { UserData } from 'src/app/models/state/auth-state.model';
-import { Login } from '../models/login.model';
+import { Login } from 'src/app/auth/models/login.model';
+import { UserData } from 'src/app/auth/state';
 
 export enum AuthActionTypes {
   LoginAction = '[Login] Load Login',
@@ -38,4 +38,9 @@ export class AuthLoading implements Action {
   constructor(public payload: boolean) {}
 }
 
-export type AuthActions = LoginAction | LoginFailed |  LoginSuccess | UserLogout | AuthLoading;
+export type AuthActions =
+  | LoginAction
+  | LoginFailed
+  | LoginSuccess
+  | UserLogout
+  | AuthLoading;
