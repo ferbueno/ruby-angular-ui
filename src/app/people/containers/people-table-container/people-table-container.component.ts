@@ -12,6 +12,7 @@ import { getPeopleState } from 'src/app/people/state/people.selectors';
 })
 export class PeopleTableContainerComponent implements OnInit {
   data: Person[] = [];
+  loading: boolean;
 
   constructor(private store: Store<State>) {}
 
@@ -19,6 +20,7 @@ export class PeopleTableContainerComponent implements OnInit {
     this.store.dispatch(new GetPeople());
     this.store.pipe(select(getPeopleState)).subscribe(peopleData => {
       this.data = peopleData.people;
+      this.loading = peopleData.loadingGet;
     });
   }
 }

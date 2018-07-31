@@ -7,6 +7,7 @@ export enum PeopleActionTypes {
   GetPeopleFailed = '[People] People Get Failed',
   GetPerson = '[People] Load Get Person',
   GetPersonSuccess = '[People] Person Get Successful',
+  GetPersonFailed = '[People] Person Get Failed',
   AddPerson = '[People] Load Add Person',
   AddPersonSuccess = '[People] Person Add Successful',
   AddPersonFailed = '[People] Person Add Failed',
@@ -39,6 +40,10 @@ export class GetPersonSuccess implements Action {
   constructor(public payload: Person) {}
 }
 
+export class GetPersonFailed implements Action {
+  readonly type = PeopleActionTypes.GetPersonFailed;
+}
+
 export class AddPerson implements Action {
   readonly type = PeopleActionTypes.AddPerson;
   constructor(public payload: Person) {}
@@ -58,6 +63,7 @@ export type PeopleActions =
   | GetPeopleFailed
   | GetPerson
   | GetPersonSuccess
+  | GetPersonFailed
   | AddPerson
   | AddPersonSuccess
   | AddPersonFailed;

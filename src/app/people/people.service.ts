@@ -25,6 +25,16 @@ export class PeopleService {
       );
   }
 
+  getPerson(id: number): Observable<Person> {
+    return this.http
+      .get<Person>(this.peopleUrl.concat('/' + id))
+      .pipe(
+        catchError(() =>
+          this.handleError('There was a problem getting this person')
+        )
+      );
+  }
+
   addPerson(person: Person): Observable<Person> {
     const payload = {
       person: {

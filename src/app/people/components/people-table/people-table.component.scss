@@ -1,0 +1,11 @@
+mat-cell:last-child,
+mat-footer-cell:last-child,
+mat-header-cell:last-child {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mat-column-age {
+  display: flex;
+  justify-content: center;
+}

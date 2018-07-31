@@ -12,6 +12,7 @@ import { PersonFormContainerComponent } from 'src/app/people/containers/person-f
 import { PeopleEffects } from 'src/app/people/state/people.effects';
 import { StoreModule } from '@ngrx/store';
 import { peopleReducer } from 'src/app/people/state/people.reducers';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { peopleReducer } from 'src/app/people/state/people.reducers';
     MaterialModule,
     ReactiveFormsModule,
     AngularMaterialFormControlsModule,
+    SharedModule,
     RouterModule.forChild([
       {
         path: '',

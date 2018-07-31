@@ -3,7 +3,9 @@ import { PeopleActions, PeopleActionTypes } from 'src/app/people/state/people.ac
 
 const initialState: PeopleState = {
   people: [],
-  loading: false
+  currentPerson: null,
+  loadingGet: false,
+  loadingSet: false
 };
 
 export function peopleReducer(
@@ -14,33 +16,49 @@ export function peopleReducer(
     case PeopleActionTypes.GetPeople:
       return {
         ...state,
-        loading: true
+        loadingGet: true
       };
       case PeopleActionTypes.GetPeopleSuccess:
       return {
         ...state,
-        loading: false,
+        loadingGet: false,
         people: action.payload
       };
       case PeopleActionTypes.GetPeopleFailed:
       return {
         ...state,
-        loading: false
+        loadingGet: false
+      };
+      case PeopleActionTypes.GetPerson:
+      return {
+        ...state,
+        loadingGet: true
+      };
+      case PeopleActionTypes.GetPersonSuccess:
+      return {
+        ...state,
+        loadingGet: false,
+        currentPerson: action.payload
+      };
+      case PeopleActionTypes.GetPersonFailed:
+      return {
+        ...state,
+        loadingGet: false
       };
       case PeopleActionTypes.AddPerson:
       return {
         ...state,
-        loading: true
+        loadingSet: true
       };
       case PeopleActionTypes.AddPersonSuccess:
       return {
         ...state,
-        loading: false
+        loadingSet: false
       };
       case PeopleActionTypes.AddPersonFailed:
       return {
         ...state,
-        loading: false
+        loadingSet: false
       };
     default:
       return state;

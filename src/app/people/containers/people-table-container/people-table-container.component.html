@@ -1,24 +1,27 @@
 <div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div *ngIf="!data.length"
-           class="alert alert-warning"
-           role="alert">
-        You don't have any people in your account
+  <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+  <ng-container *ngIf="!loading">
+    <div class="row">
+      <div class="col-12">
+        <div *ngIf="!data.length"
+             class="alert alert-warning"
+             role="alert">
+          You don't have any people in your account
+        </div>
       </div>
     </div>
-  </div>
-  <div *ngIf="data.length"
-       class="row">
-    <div class="col-12">
-      <app-people-table [data]="data"></app-people-table>
+    <div *ngIf="data.length"
+         class="row">
+      <div class="col-12">
+        <app-people-table [data]="data"></app-people-table>
+      </div>
     </div>
-  </div>
-  <div id="add-button-container">
-    <button [routerLink]="['add']"
-            mat-fab
-            color="accent">
-      <mat-icon>add</mat-icon>
-    </button>
-  </div>
+    <div id="add-button-container">
+      <button [routerLink]="['add']"
+              mat-fab
+              color="accent">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </ng-container>
 </div>
