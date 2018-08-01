@@ -87,7 +87,7 @@ export class PeopleEffects {
   updatePersonSuccess$: Observable<Action> = this.actions$.pipe(
     ofType(PeopleActionTypes.UpdatePersonSuccess),
     tap(() => {
-      this.router.navigateByUrl('/dashboard/people/');
+      this.router.navigateByUrl('/dashboard/people');
     })
   );
 
@@ -103,7 +103,7 @@ export class PeopleEffects {
     )
   );
 
-  @Effect({ dispatch: false })
+  @Effect()
   deletePersonSuccess$: Observable<Action> = this.actions$.pipe(
     ofType(PeopleActionTypes.DeletePersonSuccess),
     map(() => new GetPeople())
