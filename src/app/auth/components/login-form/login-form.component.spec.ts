@@ -1,16 +1,22 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { StoreMock } from 'src/app/tests/angular-services/store.mock';
 
 import { LoginFormComponent } from './login-form.component';
 
-describe('LoginFormComponent', () => {
+fdescribe('LoginFormComponent', () => {
   let component: LoginFormComponent;
   let fixture: ComponentFixture<LoginFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginFormComponent ]
-    })
-    .compileComponents();
+      imports: [ReactiveFormsModule],
+      declarations: [LoginFormComponent],
+      providers: [{ provide: Store, useClass: StoreMock }],
+      schemas: [NO_ERRORS_SCHEMA]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

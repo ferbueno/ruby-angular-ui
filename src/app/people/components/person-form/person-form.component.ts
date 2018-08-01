@@ -1,10 +1,10 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { InputError } from 'projects/angular-material-form-controls/src/lib/models/input-error.model';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { InputError } from '@blungo/angular-material-form-controls';
+import { select, Store } from '@ngrx/store';
 import { Person } from 'src/app/people/models/person.model';
-import { Store, select } from '@ngrx/store';
-import { State } from 'src/app/state/app.state';
 import { getPeopleState } from 'src/app/people/state/people.selectors';
+import { State } from 'src/app/state/app.state';
 
 @Component({
   selector: 'app-person-form',
@@ -18,13 +18,11 @@ export class PersonFormComponent implements OnInit {
   @Output() saveEmitter: EventEmitter<Person> = new EventEmitter();
 
   constructor(private fb: FormBuilder, private store: Store<State>) {
-    this.form = this.fb.group(
-      {
-        name: ['', Validators.required],
-        lastName: ['', Validators.required],
-        age: ['', Validators.required]
-      }
-    );
+    this.form = this.fb.group({
+      name: ['', Validators.required],
+      lastName: ['', Validators.required],
+      age: ['', Validators.required]
+    });
   }
 
   ngOnInit() {

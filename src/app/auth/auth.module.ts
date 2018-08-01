@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
-import { AngularMaterialFormControlsModule } from 'projects/angular-material-form-controls/src/public_api';
+import { AngularMaterialFormControlsModule } from '@blungo/angular-material-form-controls';
 import { LoginFormComponent } from 'src/app/auth/components/login-form/login-form.component';
 import { RegisterFormComponent } from 'src/app/auth/components/register-form/register-form.component';
 import { LoginContainerComponent } from 'src/app/auth/containers/login-container/login-container.component';

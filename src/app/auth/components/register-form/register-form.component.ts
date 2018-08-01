@@ -1,10 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
-import { InputError } from 'projects/angular-material-form-controls/src/lib/models/input-error.model';
 import { NewAccount } from 'src/app/auth/models/new-account.model';
 import { getAuthState } from 'src/app/auth/state/auth.selector';
 import { State } from 'src/app/state/app.state';
+import { InputError } from '@blungo/angular-material-form-controls';
 
 @Component({
   selector: 'app-register-form',

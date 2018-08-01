@@ -125,46 +125,6 @@
           }
         }
       }
-    },
-    "angular-material-form-controls": {
-      "root": "projects/angular-material-form-controls",
-      "sourceRoot": "projects/angular-material-form-controls/src",
-      "projectType": "library",
-      "prefix": "blungo",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
-          "options": {
-            "tsConfig": "projects/angular-material-form-controls/tsconfig.lib.json",
-            "project": "projects/angular-material-form-controls/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "project": "projects/angular-material-form-controls/ng-package.prod.json"
-            }
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/angular-material-form-controls/src/test.ts",
-            "tsConfig": "projects/angular-material-form-controls/tsconfig.spec.json",
-            "karmaConfig": "projects/angular-material-form-controls/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/angular-material-form-controls/tsconfig.lib.json",
-              "projects/angular-material-form-controls/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        }
-      }
     }
   },
   "defaultProject": "ruby-angular-ui"
