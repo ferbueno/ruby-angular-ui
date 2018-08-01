@@ -69,6 +69,16 @@ export class PeopleService {
       );
   }
 
+  deletePerson(id: number): Observable<Person> {
+    return this.http
+      .delete<Person>(this.peopleUrl.concat('/' + id))
+      .pipe(
+        catchError(() =>
+          this.handleError('There was a problem deleting this person')
+        )
+      );
+  }
+
   private handleError(message: string): Observable<never> {
     const action = 'Ok';
     this.snackBar.open(message, action, {

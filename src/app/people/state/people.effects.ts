@@ -15,7 +15,11 @@ import {
   GetPersonSuccess,
   PeopleActionTypes,
   UpdatePersonSuccess,
-  UpdatePersonFailed
+  UpdatePersonFailed,
+  DeletePerson,
+  DeletePersonSuccess,
+  DeletePersonFailed,
+  GetPeople
 } from 'src/app/people/state/people.actions';
 import { Action } from '@ngrx/store';
 import { Router } from '@angular/router';
@@ -42,7 +46,7 @@ export class PeopleEffects {
     mergeMap((person: Person) =>
       this.peopleService.addPerson(person).pipe(
         map(() => new AddPersonSuccess()),
-        catchError(err => of(new AddPersonFailed()))
+        catchError(() => of(new AddPersonFailed()))
       )
     )
   );
@@ -54,7 +58,7 @@ export class PeopleEffects {
     mergeMap((id: number) =>
       this.peopleService.getPerson(id).pipe(
         map((person: Person) => new GetPersonSuccess(person)),
-        catchError(err => of(new GetPersonFailed()))
+        catchError(() => of(new GetPersonFailed()))
       )
     )
   );
@@ -74,7 +78,7 @@ export class PeopleEffects {
     mergeMap((person: Person) =>
       this.peopleService.updatePerson(person).pipe(
         map(() => new UpdatePersonSuccess()),
-        catchError(err => of(new UpdatePersonFailed()))
+        catchError(() => of(new UpdatePersonFailed()))
       )
     )
   );
@@ -82,8 +86,26 @@ export class PeopleEffects {
   @Effect({ dispatch: false })
   updatePersonSuccess$: Observable<Action> = this.actions$.pipe(
     ofType(PeopleActionTypes.UpdatePersonSuccess),
-    tap((action: UpdatePersonSuccess) => {
+    tap(() => {
       this.router.navigateByUrl('/dashboard/people/');
     })
+  );
+
+  @Effect()
+  deletePerson$ = this.actions$.pipe(
+    ofType(PeopleActionTypes.DeletePerson),
+    map((action: DeletePerson) => action.payload),
+    mergeMap((id: number) =>
+      this.peopleService.deletePerson(id).pipe(
+        map(() => new DeletePersonSuccess()),
+        catchError(() => of(new DeletePersonFailed()))
+      )
+    )
+  );
+
+  @Effect({ dispatch: false })
+  deletePersonSuccess$: Observable<Action> = this.actions$.pipe(
+    ofType(PeopleActionTypes.DeletePersonSuccess),
+    map(() => new GetPeople())
   );
 }

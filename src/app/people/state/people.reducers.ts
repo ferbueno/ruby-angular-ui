@@ -75,6 +75,21 @@ export function peopleReducer(
         ...state,
         loadingSet: false
       };
+      case PeopleActionTypes.DeletePerson:
+      return {
+        ...state,
+        loadingSet: true
+      };
+      case PeopleActionTypes.DeletePersonSuccess:
+      return {
+        ...state,
+        loadingSet: false
+      };
+      case PeopleActionTypes.DeletePersonFailed:
+      return {
+        ...state,
+        loadingSet: false
+      };
     default:
       return state;
   }

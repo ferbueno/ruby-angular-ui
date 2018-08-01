@@ -39,7 +39,8 @@
                       mat-menu-item>
                 <span>Edit</span>
               </button>
-              <button mat-menu-item>
+              <button (click)="delete(element)"
+                      mat-menu-item>
                 <span>Delete</span>
               </button>
             </mat-menu>

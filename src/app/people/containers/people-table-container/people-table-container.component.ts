@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Person } from '../../models/person.model';
-import { Store, select } from '@ngrx/store';
-import { State } from 'src/app/state/app.state';
-import { GetPeople, GetPerson } from 'src/app/people/state/people.actions';
-import { getPeopleState } from 'src/app/people/state/people.selectors';
+import { MatDialog } from '@angular/material';
 import { Router } from '@angular/router';
+import { select, Store } from '@ngrx/store';
+import { filter } from 'rxjs/operators';
+import { DeletePerson, GetPeople } from 'src/app/people/state/people.actions';
+import { getPeopleState } from 'src/app/people/state/people.selectors';
+import { ConfirmationDialogComponent } from 'src/app/shared/components/confirmation-dialog/confirmation-dialog.component';
+import { State } from 'src/app/state/app.state';
+
+import { Person } from '../../models/person.model';
 
 @Component({
   selector: 'app-people-table-container',
@@ -15,7 +19,11 @@ export class PeopleTableContainerComponent implements OnInit {
   data: Person[] = [];
   loading: boolean;
 
-  constructor(private store: Store<State>, private router: Router) {}
+  constructor(
+    private store: Store<State>,
+    private router: Router,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit() {
     this.store.dispatch(new GetPeople());
@@ -27,5 +35,19 @@ export class PeopleTableContainerComponent implements OnInit {
 
   edit(id: number): void {
     this.router.navigate(['dashboard', 'people', id]);
+  }
+
+  delete(person: Person) {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        title: 'Confirmar',
+        question: '¿Desea a la persona ' + person.name + ' ' + person.last_name
+      }
+    });
+
+    dialogRef
+      .afterClosed()
+      .pipe(filter(value => value))
+      .subscribe(() => this.store.dispatch(new DeletePerson(person.id)));
   }
 }

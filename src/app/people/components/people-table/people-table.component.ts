@@ -15,6 +15,7 @@ export class PeopleTableComponent implements OnInit, OnChanges {
   displayedColumns = ['name', 'last_name', 'age', 'action'];
   dataSource: MatTableDataSource<any>;
   @Output() editEmitter: EventEmitter<number> = new EventEmitter();
+  @Output() deleteEmitter: EventEmitter<Person> = new EventEmitter();
   constructor() {}
 
   ngOnInit() {}
@@ -27,5 +28,9 @@ export class PeopleTableComponent implements OnInit, OnChanges {
 
   edit(id: number) {
     this.editEmitter.emit(id);
+  }
+
+  delete(person: Person) {
+    this.deleteEmitter.emit(person);
   }
 }
