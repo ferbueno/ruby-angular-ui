@@ -60,6 +60,21 @@ export function peopleReducer(
         ...state,
         loadingSet: false
       };
+      case PeopleActionTypes.UpdatePerson:
+      return {
+        ...state,
+        loadingSet: true
+      };
+      case PeopleActionTypes.UpdatePersonSuccess:
+      return {
+        ...state,
+        loadingSet: false
+      };
+      case PeopleActionTypes.UpdatePersonFailed:
+      return {
+        ...state,
+        loadingSet: false
+      };
     default:
       return state;
   }

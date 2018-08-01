@@ -52,6 +52,23 @@ export class PeopleService {
       );
   }
 
+  updatePerson(person: Person): Observable<Person> {
+    const payload = {
+      person: {
+        name: person.name,
+        last_name: person.lastName,
+        age: +person.age
+      }
+    };
+    return this.http
+      .put<Person>(this.peopleUrl.concat('/' + person.id), payload)
+      .pipe(
+        catchError(() =>
+          this.handleError('There was a problem updating this person')
+        )
+      );
+  }
+
   private handleError(message: string): Observable<never> {
     const action = 'Ok';
     this.snackBar.open(message, action, {

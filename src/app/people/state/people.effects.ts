@@ -14,6 +14,8 @@ import {
   GetPersonFailed,
   GetPersonSuccess,
   PeopleActionTypes,
+  UpdatePersonSuccess,
+  UpdatePersonFailed
 } from 'src/app/people/state/people.actions';
 import { Action } from '@ngrx/store';
 import { Router } from '@angular/router';
@@ -59,10 +61,29 @@ export class PeopleEffects {
 
   @Effect({ dispatch: false })
   getPersonSuccess$: Observable<Action> = this.actions$.pipe(
-    ofType(PeopleActionTypes.GetPeopleSuccess),
-    tap((lol) => {
-      console.log(lol);
-      this.router.navigateByUrl('/dashboard/people');
+    ofType(PeopleActionTypes.GetPersonSuccess),
+    tap((action: GetPersonSuccess) => {
+      this.router.navigateByUrl('/dashboard/people/' + action.payload.id);
+    })
+  );
+
+  @Effect()
+  updatePerson$ = this.actions$.pipe(
+    ofType(PeopleActionTypes.UpdatePerson),
+    map((action: AddPerson) => action.payload),
+    mergeMap((person: Person) =>
+      this.peopleService.updatePerson(person).pipe(
+        map(() => new UpdatePersonSuccess()),
+        catchError(err => of(new UpdatePersonFailed()))
+      )
+    )
+  );
+
+  @Effect({ dispatch: false })
+  updatePersonSuccess$: Observable<Action> = this.actions$.pipe(
+    ofType(PeopleActionTypes.UpdatePersonSuccess),
+    tap((action: UpdatePersonSuccess) => {
+      this.router.navigateByUrl('/dashboard/people/');
     })
   );
 }

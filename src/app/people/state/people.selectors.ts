@@ -4,3 +4,5 @@ import { PeopleState } from 'src/app/people/state';
 const getPeopleFeatureState = createFeatureSelector<PeopleState>('people');
 
 export const getPeopleState = createSelector(getPeopleFeatureState, state => state);
+
+export const getCurrentPerson = createSelector(getPeopleFeatureState, state => state.currentPerson);

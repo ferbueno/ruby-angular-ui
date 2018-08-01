@@ -13,6 +13,7 @@ export enum PeopleActionTypes {
   AddPersonFailed = '[People] Person Add Failed',
   UpdatePerson = '[People] Load Person Update',
   UpdatePersonSuccess = '[People] Person Update Successful',
+  UpdatePersonFailed = '[People] Person Update Failed',
   DeletePerson = '[People] Load Delete Person',
   DeletePersonSuccess = '[People] Person Delete Successful'
 }
@@ -57,6 +58,19 @@ export class AddPersonFailed implements Action {
   readonly type = PeopleActionTypes.AddPersonFailed;
 }
 
+export class UpdatePerson implements Action {
+  readonly type = PeopleActionTypes.UpdatePerson;
+  constructor(public payload: Person) {}
+}
+
+export class UpdatePersonSuccess implements Action {
+  readonly type = PeopleActionTypes.UpdatePersonSuccess;
+}
+
+export class UpdatePersonFailed implements Action {
+  readonly type = PeopleActionTypes.UpdatePersonFailed;
+}
+
 export type PeopleActions =
   | GetPeople
   | GetPeopleSuccess
@@ -66,4 +80,7 @@ export type PeopleActions =
   | GetPersonFailed
   | AddPerson
   | AddPersonSuccess
-  | AddPersonFailed;
+  | AddPersonFailed
+  | UpdatePerson
+  | UpdatePersonSuccess
+  | UpdatePersonFailed;

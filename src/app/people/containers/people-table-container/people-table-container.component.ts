@@ -4,6 +4,7 @@ import { Store, select } from '@ngrx/store';
 import { State } from 'src/app/state/app.state';
 import { GetPeople, GetPerson } from 'src/app/people/state/people.actions';
 import { getPeopleState } from 'src/app/people/state/people.selectors';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-people-table-container',
@@ -14,7 +15,7 @@ export class PeopleTableContainerComponent implements OnInit {
   data: Person[] = [];
   loading: boolean;
 
-  constructor(private store: Store<State>) {}
+  constructor(private store: Store<State>, private router: Router) {}
 
   ngOnInit() {
     this.store.dispatch(new GetPeople());
@@ -25,6 +26,6 @@ export class PeopleTableContainerComponent implements OnInit {
   }
 
   edit(id: number): void {
-    this.store.dispatch(new GetPerson(id));
+    this.router.navigate(['dashboard', 'people', id]);
   }
 }
