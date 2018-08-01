@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginContainerComponent } from './login-container.component';
+import { Store } from '@ngrx/store';
+import { StoreMock } from 'src/app/tests/angular-services/store.mock';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('LoginContainerComponent', () => {
   let component: LoginContainerComponent;
@@ -8,9 +11,10 @@ describe('LoginContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginContainerComponent ]
-    })
-    .compileComponents();
+      declarations: [LoginContainerComponent],
+      providers: [{ provide: Store, useClass: StoreMock }],
+      schemas: [NO_ERRORS_SCHEMA]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -56,7 +56,7 @@ export class AuthService {
           });
           return throwError(error);
         })
-      )
+      );
   }
 
   login(login: Login): Observable<UserData> {
@@ -83,7 +83,7 @@ export class AuthService {
           });
           return throwError(error);
         })
-      )
+      );
   }
 
   logout(): void {

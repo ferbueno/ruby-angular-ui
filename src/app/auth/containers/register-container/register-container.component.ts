@@ -11,21 +11,21 @@ import { AuthService } from 'src/app/auth/services/auth.service';
 })
 export class RegisterContainerComponent implements OnInit {
   constructor(
-    private authService: AuthService,
-    private router: Router,
-    private snackBar: MatSnackBar
+    // private authService: AuthService,
+    // private router: Router,
+    // private snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {}
 
   register(newAccount: NewAccount) {
-    this.authService.register(newAccount).subscribe(() => {
-      const message = 'Su cuenta ha sido creada con éxito';
-      const action = 'Ok';
-      this.snackBar.open(message, action, {
-        duration: 3000
-      });
-      this.router.navigateByUrl('auth/login');
-    });
+    // this.authService.register(newAccount).subscribe(() => {
+    //   const message = 'Su cuenta ha sido creada con éxito';
+    //   const action = 'Ok';
+    //   this.snackBar.open(message, action, {
+    //     duration: 3000
+    //   });
+    //   this.router.navigateByUrl('auth/login');
+    // });
   }
 }

@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RegisterContainerComponent } from './register-container.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('RegisterContainerComponent', () => {
   let component: RegisterContainerComponent;
@@ -8,9 +9,9 @@ describe('RegisterContainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegisterContainerComponent ]
-    })
-    .compileComponents();
+      declarations: [RegisterContainerComponent],
+      schemas: [NO_ERRORS_SCHEMA]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

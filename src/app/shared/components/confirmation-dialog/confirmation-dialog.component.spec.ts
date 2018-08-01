@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConfirmationDialogComponent } from './confirmation-dialog.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { MAT_DIALOG_DATA } from '@angular/material';
+import { DialogDataMock } from 'src/app/tests/angular-services/dialog-data.mock';
 
 describe('ConfirmationDialogComponent', () => {
   let component: ConfirmationDialogComponent;
@@ -8,7 +11,9 @@ describe('ConfirmationDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConfirmationDialogComponent ]
+      declarations: [ ConfirmationDialogComponent ],
+      providers: [{ provide: MAT_DIALOG_DATA, useValue: DialogDataMock }],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));
