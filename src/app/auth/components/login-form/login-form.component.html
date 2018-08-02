@@ -4,7 +4,8 @@
         autocomplete="on">
     <div class="row">
       <div class="col-12">
-        <blungo-material-input placeHolder="Email"
+        <blungo-material-input id="email-input"
+                               placeHolder="Email"
                                autocomplete="email"
                                type="email"
                                [control]="form.controls['email']"
@@ -14,7 +15,8 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <blungo-material-input placeHolder="Password"
+        <blungo-material-input id="password-input"
+                               placeHolder="Password"
                                autocomplete="current-password"
                                type="password"
                                [control]="form.controls['password']"
@@ -24,7 +26,8 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <button color="primary"
+        <button id="login-button"
+                color="primary"
                 class="btn-full-width"
                 mat-raised-button
                 type="submit">Login
